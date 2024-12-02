@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="action_clinica_anamnesis" model="ir.actions.act_window">
+            <field name="name">Clinica Anamnesis</field>
+            <field name="res_model">aqs.clinica.anamnesis</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="view_id" ref="view_clinica_anamnesis_tree"/>-->
+        </record>
+
         <record id="view_clinica_anamnesis_tree" model="ir.ui.view">
             <field name="name">aqs.clinica.anamnesis.tree</field>
             <field name="model">aqs.clinica.anamnesis</field>
             <field name="arch" type="xml">
-                <tree string="Anamnesis" create="true" delete="true" edit="true">
+                <tree string="Anamnesis">
                     <field name="name" string="Anamnesis Number" />
                     <field name="patient_id" string="Patient" />
                     <field name="doctor_id" string="Doctor" />
@@ -65,12 +72,7 @@
             </field>
         </record>
 
-        <record id="action_clinica_anamnesis" model="ir.actions.act_window">
-            <field name="name">Clinica Anamnesis</field>
-            <field name="res_model">aqs.clinica.anamnesis</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_clinica_anamnesis_tree"/>
-        </record>
+
 
 
         <!-- Top menu item -->

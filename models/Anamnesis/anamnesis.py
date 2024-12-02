@@ -38,7 +38,10 @@ class AqsClinicaAnamnesis(models.Model):
     @api.depends('patient_id')
     def _compute_related_sales_orders(self):
         for record in self:
-            record.related_sales_orders = self.env['sale.order'].search([('partner_id', '=', record.patient_id.id)])
+            if record.partner_id:
+                record.related_sales_orders = self.env['sale.order'].search([('partner_id', '=', record.patient_id.id)])
+            else:
+                record.related_sales_orders = None
 
     total_sales_orders = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Sales Orders Project")
 
@@ -46,21 +49,30 @@ class AqsClinicaAnamnesis(models.Model):
     @api.depends('related_sales_orders')
     def _count_related_sales_orders(self):
         for record in self:
-            record.total_sales_orders = len(record.related_sales_orders)
+            if record.partner_id:
+                record.total_sales_orders = len(record.related_sales_orders)
+            else:
+                record.total_sales_orders = None
 
     related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
 
     @api.depends('patient_id')
     def _compute_related_invoices(self):
         for record in self:
-            record.related_invoices = self.env['account.move'].search([('partner_id', '=', record.patient_id.id), ('move_type', 'in', ['out_invoice', 'out_refund'])])
+            if record.partner_id:
+                record.related_invoices = self.env['account.move'].search([('partner_id', '=', record.patient_id.id), ('move_type', 'in', ['out_invoice', 'out_refund'])])
+            else:
+                record.related_invoices = None
 
     total_invoices = fields.Integer(compute='_count_related_invoices', tracking=True, string="Total Invoices")
 
     @api.depends('related_invoices')
     def _count_related_invoices(self):
         for record in self:
-            record.total_invoices = len(record.related_invoices)
+            if record.partner_id:
+                record.total_invoices = len(record.related_invoices)
+            else:
+                record.total_invoices = None
 
     def action_sales_orders(self):
         return {

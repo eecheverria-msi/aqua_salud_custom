@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <!-- Locate the email field to insert fields below it -->
+                <field name="email" position="after">
+                    <field name="birth_date" />
+                    <field name="document_type" />
+                    <field name="document_number" />
+                    <field name="marital_status" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

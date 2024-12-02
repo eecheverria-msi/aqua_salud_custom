@@ -45,7 +45,7 @@ class AqsClinicaAnamnesis(models.Model):
 
     related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", compute="_compute_related_sales_orders")
 
-    @api.depends('id')
+    @api.depends('patient_id')
     def _compute_related_sales_orders(self):
         for record in self:
             record.related_sales_orders = self.env['sale.order'].search([('partner_id', '=', record.patient_id.id)])
@@ -60,7 +60,7 @@ class AqsClinicaAnamnesis(models.Model):
 
     related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
 
-    @api.depends('id')
+    @api.depends('patient_id')
     def _compute_related_invoices(self):
         for record in self:
             record.related_invoices = self.env['account.move'].search([('partner_id', '=', record.patient_id.id), ('move_type', 'in', ['out_invoice', 'out_refund'])])

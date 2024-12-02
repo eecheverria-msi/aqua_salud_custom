@@ -5,8 +5,8 @@
             <field name="name">aqs.clinica.anamnesis.tree</field>
             <field name="model">aqs.clinica.anamnesis</field>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="name" decoration-bf="1"/>
+                <tree string="Anamnesis">
+                    <field name="name" />
                     <field name="patient_id" />
                     <field name="doctor_id" />
                 </tree>
@@ -33,7 +33,7 @@
                         <notebook>
                             <page string="General Information">
                                 <group>
-                                    <field name="name" decoration-bf="1"/>
+                                    <field name="name"/>
                                     <field name="patient_id" />
                                     <field name="doctor_id" />
                                 </group>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="view_clinica_anamnesis_tree" model="ir.ui.view">
-            <field name="name">aqs.clinica.anamnesis.tree</field>
-            <field name="model">aqs.clinica.anamnesis</field>
-            <field name="arch" type="xml">
-                <tree string="Anamnesis">
-                    <field name="name" />
-                    <field name="patient_id" />
-                    <field name="doctor_id" />
-                </tree>
-            </field>
-        </record>
+<!--        <record id="view_clinica_anamnesis_tree" model="ir.ui.view">-->
+<!--            <field name="name">aqs.clinica.anamnesis.tree</field>-->
+<!--            <field name="model">aqs.clinica.anamnesis</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Anamnesis">-->
+<!--                    <field name="name" />-->
+<!--                    <field name="patient_id" />-->
+<!--                    <field name="doctor_id" />-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
 
         <record id="view_clinica_anamnesis_form" model="ir.ui.view">
             <field name="name">aqs.clinica.anamnesis.form</field>

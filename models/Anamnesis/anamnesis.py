@@ -4,16 +4,6 @@ from odoo import models, fields, api, tools
 from odoo.tools.translate import _
 from odoo.exceptions import UserError
 from odoo.exceptions import ValidationError, UserError
-import uuid
-import werkzeug
-from dateutil.relativedelta import relativedelta
-import datetime
-import base64
-from babel.dates import format_date
-import pytz
-import zipfile
-from io import BytesIO
-import time
 import logging
 _logger = logging.getLogger(__name__)
 

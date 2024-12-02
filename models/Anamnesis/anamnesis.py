@@ -33,14 +33,14 @@ class AqsClinicaAnamnesis(models.Model):
     plan_de_tratamiento = fields.Text(string="Plan de Tratamiento")
     ev_notas_prog = fields.Text(string="Evolucion y notas de progreso")
 
-    related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", store=True, compute="_compute_related_sales_orders")
+    related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", compute="_compute_related_sales_orders")
 
     @api.depends('patient_id')
     def _compute_related_sales_orders(self):
         for record in self:
             record.related_sales_orders = self.env['sale.order'].search([('partner_id', '=', record.patient_id.id)])
 
-    total_sales_orders_in_project = fields.Integer(compute='_count_related_sales_orders', store=True, tracking=True, string="Total Sales Orders Project")
+    total_sales_orders_in_project = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Sales Orders Project")
 
     # TOTAL SALES ORDERS IN PROJECT COMPUTE METHOD
     @api.depends('related_sales_orders')
@@ -48,14 +48,14 @@ class AqsClinicaAnamnesis(models.Model):
         for record in self:
             record.total_sales_orders_in_project = len(record.related_sales_orders)
 
-    related_invoices = fields.One2many('account.move', string="Related Invoices", store=True, compute="_compute_related_invoices")
+    related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
 
     @api.depends('patient_id')
     def _compute_related_invoices(self):
         for record in self:
             record.related_invoices = self.env['account.move'].search([('partner_id', '=', record.patient_id.id), ('move_type', 'in', ['out_invoice', 'out_refund'])])
 
-    total_invoices = fields.Integer(compute='_count_related_invoices', store=True, tracking=True, string="Total Invoices")
+    total_invoices = fields.Integer(compute='_count_related_invoices', tracking=True, string="Total Invoices")
 
     @api.depends('related_invoices')
     def _count_related_invoices(self):

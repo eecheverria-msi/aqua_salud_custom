@@ -33,7 +33,7 @@ class AqsClinicaAnamnesis(models.Model):
     plan_de_tratamiento = fields.Text(string="Plan de Tratamiento")
     ev_notas_prog = fields.Text(string="Evolucion y notas de progreso")
 
-    related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", compute="_compute_related_sales_orders")
+    related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", store=True, compute="_compute_related_sales_orders")
 
     @api.depends('patient_id')
     def _compute_related_sales_orders(self):
@@ -48,7 +48,7 @@ class AqsClinicaAnamnesis(models.Model):
         for record in self:
             record.total_sales_orders_in_project = len(record.related_sales_orders)
 
-    related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
+    related_invoices = fields.One2many('account.move', string="Related Invoices", store=True, compute="_compute_related_invoices")
 
     @api.depends('patient_id')
     def _compute_related_invoices(self):

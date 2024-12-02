@@ -40,13 +40,13 @@ class AqsClinicaAnamnesis(models.Model):
         for record in self:
             record.related_sales_orders = self.env['sale.order'].search([('partner_id', '=', record.patient_id.id)])
 
-    total_sales_orders_in_project = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Sales Orders Project")
+    total_sales_orders = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Sales Orders Project")
 
     # TOTAL SALES ORDERS IN PROJECT COMPUTE METHOD
     @api.depends('related_sales_orders')
     def _count_related_sales_orders(self):
         for record in self:
-            record.total_sales_orders_in_project = len(record.related_sales_orders)
+            record.total_sales_orders = len(record.related_sales_orders)
 
     related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
 

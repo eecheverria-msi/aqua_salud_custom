@@ -19,7 +19,6 @@
             <field name="arch" type="xml">
                 <form string="Clinica Anamnesis">
                     <header>
-                        <button name="action_confirm" type="object" string="Confirm" class="btn-primary"/>
                         <field name="total_sales_orders_in_project" widget="statinfo" options="{'type': 'info', 'icon': 'fa-dollar-sign'}"/>
                         <field name="total_invoices" widget="statinfo" options="{'type': 'info', 'icon': 'fa-file-invoice'}"/>
                         <button name="action_sales_orders" type="object" class="oe_stat_button" icon="fa fa-dollar-sign">

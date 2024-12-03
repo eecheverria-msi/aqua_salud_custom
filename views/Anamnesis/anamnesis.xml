@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="seq_projects_pallet" model="ir.sequence">
+            <field name="name">Anamnesis Sequence</field>
+            <field name="code">aqs.clinica.anamnesis</field>
+            <field name="prefix">ANAM/%(month)s/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="use_date_range">True</field>
+        </record>
+
         <record id="action_clinica_anamnesis" model="ir.actions.act_window">
             <field name="name">Clinica Anamnesis</field>
             <field name="res_model">aqs.clinica.anamnesis</field>

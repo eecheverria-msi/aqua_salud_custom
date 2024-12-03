@@ -18,7 +18,7 @@ class AqsClinicaAnamnesis(models.Model):
     # GENERAL INFO FIELDS
     # =====================
 
-    name = fields.Char(string="Numero Anamnesis")
+    name = fields.Char(string="Numero Anamnesis", default=lambda self: self.env['ir.sequence'].next_by_code('aqs.clinica.anamnesis'))
 
     patient_id = fields.Many2one('res.partner', string="Patient", tracking=True)
     doctor_id = fields.Many2one('res.users', string="Doctor", tracking=True)

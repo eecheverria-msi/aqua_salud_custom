@@ -18,10 +18,10 @@ class AqsClinicaAnamnesis(models.Model):
     # GENERAL INFO FIELDS
     # =====================
 
-    name = fields.Char(string="Numero Anamnesis", default=lambda self: self.env['ir.sequence'].next_by_code('aqs.clinica.anamnesis'))
+    name = fields.Char(string="Numero Anamnesis", required=True, default=lambda self: self.env['ir.sequence'].next_by_code('aqs.clinica.anamnesis'))
 
-    patient_id = fields.Many2one('res.partner', string="Patient", tracking=True)
-    doctor_id = fields.Many2one('res.users', string="Doctor", tracking=True)
+    patient_id = fields.Many2one('res.partner', string="Patient", required=True, tracking=True)
+    doctor_id = fields.Many2one('res.users', string="Doctor", required=True, tracking=True)
 
     historial_medico_personal = fields.Text(string="Historial Medico Personal")
     historial_medico_familiar = fields.Text(string="Historial Medico Familiar")
@@ -33,16 +33,6 @@ class AqsClinicaAnamnesis(models.Model):
     plan_de_tratamiento = fields.Text(string="Plan de Tratamiento")
     ev_notas_prog = fields.Text(string="Evolucion y notas de progreso")
 
-    # related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", compute="_compute_related_sales_orders")
-    #
-    # @api.depends('patient_id')
-    # def _compute_related_sales_orders(self):
-    #     for record in self:
-    #         if record.patient_id:
-    #             record.related_sales_orders = record.patient_id.sale_order_ids
-    #         else:
-    #             record.related_sales_orders = None
-
     total_sales_orders = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Sales Orders Project")
 
     # TOTAL SALES ORDERS IN PROJECT COMPUTE METHOD
@@ -53,16 +43,6 @@ class AqsClinicaAnamnesis(models.Model):
                 record.total_sales_orders = len(record.patient_id.sale_order_ids)
             else:
                 record.total_sales_orders = None
-
-    # related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
-    #
-    # @api.depends('patient_id')
-    # def _compute_related_invoices(self):
-    #     for record in self:
-    #         if record.patient_id:
-    #             record.related_invoices = record.patient_id.invoice_ids
-    #         else:
-    #             record.related_invoices = None
 
     total_invoices = fields.Integer(compute='_count_related_invoices', tracking=True, string="Total Invoices")
 

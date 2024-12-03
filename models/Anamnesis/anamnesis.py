@@ -33,44 +33,44 @@ class AqsClinicaAnamnesis(models.Model):
     plan_de_tratamiento = fields.Text(string="Plan de Tratamiento")
     ev_notas_prog = fields.Text(string="Evolucion y notas de progreso")
 
-    related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", compute="_compute_related_sales_orders")
-
-    @api.depends('patient_id')
-    def _compute_related_sales_orders(self):
-        for record in self:
-            if record.patient_id:
-                record.related_sales_orders = record.patient_id.sale_order_ids
-            else:
-                record.related_sales_orders = None
+    # related_sales_orders = fields.One2many('sale.order', string="Related Sales Orders", compute="_compute_related_sales_orders")
+    #
+    # @api.depends('patient_id')
+    # def _compute_related_sales_orders(self):
+    #     for record in self:
+    #         if record.patient_id:
+    #             record.related_sales_orders = record.patient_id.sale_order_ids
+    #         else:
+    #             record.related_sales_orders = None
 
     total_sales_orders = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Sales Orders Project")
 
     # TOTAL SALES ORDERS IN PROJECT COMPUTE METHOD
-    @api.depends('related_sales_orders')
+    @api.depends('patient_id')
     def _count_related_sales_orders(self):
         for record in self:
             if record.patient_id:
-                record.total_sales_orders = len(record.related_sales_orders)
+                record.total_sales_orders = len(record.patient_id.sale_order_ids)
             else:
                 record.total_sales_orders = None
 
-    related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
-
-    @api.depends('patient_id')
-    def _compute_related_invoices(self):
-        for record in self:
-            if record.patient_id:
-                record.related_invoices = record.patient_id.invoice_ids
-            else:
-                record.related_invoices = None
+    # related_invoices = fields.One2many('account.move', string="Related Invoices", compute="_compute_related_invoices")
+    #
+    # @api.depends('patient_id')
+    # def _compute_related_invoices(self):
+    #     for record in self:
+    #         if record.patient_id:
+    #             record.related_invoices = record.patient_id.invoice_ids
+    #         else:
+    #             record.related_invoices = None
 
     total_invoices = fields.Integer(compute='_count_related_invoices', tracking=True, string="Total Invoices")
 
-    @api.depends('related_invoices')
+    @api.depends('patient_id')
     def _count_related_invoices(self):
         for record in self:
             if record.patient_id:
-                record.total_invoices = len(record.related_invoices)
+                record.total_invoices = len(record.patient_id.invoice_ids)
             else:
                 record.total_invoices = None
 

@@ -39,7 +39,7 @@ class AqsClinicaAnamnesis(models.Model):
     def _compute_related_sales_orders(self):
         for record in self:
             if record.patient_id:
-                record.related_sales_orders = self.env['sale.order'].search([('partner_id', '=', record.patient_id.id)])
+                record.related_sales_orders = record.patient_id.sale_order_ids
             else:
                 record.related_sales_orders = None
 
@@ -60,7 +60,7 @@ class AqsClinicaAnamnesis(models.Model):
     def _compute_related_invoices(self):
         for record in self:
             if record.patient_id:
-                record.related_invoices = self.env['account.move'].search([('partner_id', '=', record.patient_id.id), ('move_type', 'in', ['out_invoice', 'out_refund'])])
+                record.related_invoices = record.patient_id.invoice_ids
             else:
                 record.related_invoices = None
 

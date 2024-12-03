@@ -21,3 +21,5 @@ class AquaSaludResPartner(models.Model):
         ('Separado', 'Separado'),
         ('Divorciado', 'Divorciado'),
         ('Viudo', 'Viudo'),], string="Marital Status", tracking=True)
+
+    related_anamnesis = fields.One2many('aqs.clinica.anamnesis', 'patient_id', string="Related Anamnesis")

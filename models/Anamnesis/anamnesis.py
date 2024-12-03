@@ -38,7 +38,7 @@ class AqsClinicaAnamnesis(models.Model):
     @api.depends('patient_id')
     def _compute_related_sales_orders(self):
         for record in self:
-            if record.partner_id:
+            if record.patient_id:
                 record.related_sales_orders = self.env['sale.order'].search([('partner_id', '=', record.patient_id.id)])
             else:
                 record.related_sales_orders = None
@@ -49,7 +49,7 @@ class AqsClinicaAnamnesis(models.Model):
     @api.depends('related_sales_orders')
     def _count_related_sales_orders(self):
         for record in self:
-            if record.partner_id:
+            if record.patient_id:
                 record.total_sales_orders = len(record.related_sales_orders)
             else:
                 record.total_sales_orders = None
@@ -59,7 +59,7 @@ class AqsClinicaAnamnesis(models.Model):
     @api.depends('patient_id')
     def _compute_related_invoices(self):
         for record in self:
-            if record.partner_id:
+            if record.patient_id:
                 record.related_invoices = self.env['account.move'].search([('partner_id', '=', record.patient_id.id), ('move_type', 'in', ['out_invoice', 'out_refund'])])
             else:
                 record.related_invoices = None
@@ -69,7 +69,7 @@ class AqsClinicaAnamnesis(models.Model):
     @api.depends('related_invoices')
     def _count_related_invoices(self):
         for record in self:
-            if record.partner_id:
+            if record.patient_id:
                 record.total_invoices = len(record.related_invoices)
             else:
                 record.total_invoices = None

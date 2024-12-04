@@ -62,19 +62,19 @@
                         <notebook position="inside">
                             <page string="Medical History">
                                 <group>
-                                    <field name="historial_medico_personal" />
-                                    <field name="historial_medico_familiar" />
+                                    <field name="historial_medico_personal" widget="html"/>
+                                    <field name="historial_medico_familiar" widget="html"/>
                                 </group>
                             </page>
                             <page string="Consultation Details">
                                 <group>
-                                    <field name="motivo_de_consulta" />
+                                    <field name="motivo_de_consulta" widget="html"/>
                                     <field name="enfermedad_actual" />
-                                    <field name="examen_fisico" />
-                                    <field name="res_de_pruebas_diag" />
+                                    <field name="examen_fisico" widget="html"/>
+                                    <field name="res_de_pruebas_diag" widget="html"/>
                                     <field name="diagnostico" />
-                                    <field name="plan_de_tratamiento" />
-                                    <field name="ev_notas_prog" />
+                                    <field name="plan_de_tratamiento" widget="html"/>
+                                    <field name="ev_notas_prog" widget="html"/>
                                 </group>
                             </page>
                         </notebook>

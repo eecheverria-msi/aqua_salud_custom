@@ -23,15 +23,15 @@ class AqsClinicaAnamnesis(models.Model):
     patient_id = fields.Many2one('res.partner', string="Paciente", required=True, tracking=True)
     doctor_id = fields.Many2one('res.users', string="Doctor", required=True, tracking=True)
 
-    historial_medico_personal = fields.Text(string="Historial Medico Personal")
-    historial_medico_familiar = fields.Text(string="Historial Medico Familiar")
-    motivo_de_consulta = fields.Text(string="Motivo de Consulta")
+    historial_medico_personal = fields.Html(string="Historial Medico Personal")
+    historial_medico_familiar = fields.Html(string="Historial Medico Familiar")
+    motivo_de_consulta = fields.Html(string="Motivo de Consulta")
     enfermedad_actual = fields.Char(string="Enfermedad Actual")
-    examen_fisico = fields.Text(string="Examen Fisico")
-    res_de_pruebas_diag = fields.Text(string="Resultados de Pruebas Diagnosticas")
+    examen_fisico = fields.Html(string="Examen Fisico")
+    res_de_pruebas_diag = fields.Html(string="Resultados de Pruebas Diagnosticas")
     diagnostico = fields.Char(string="Diagnostico")
-    plan_de_tratamiento = fields.Text(string="Plan de Tratamiento")
-    ev_notas_prog = fields.Text(string="Evolucion y notas de progreso")
+    plan_de_tratamiento = fields.Html(string="Plan de Tratamiento")
+    ev_notas_prog = fields.Html(string="Evolucion y notas de progreso")
 
     total_sales_orders = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Ordenes de Compra")
 

@@ -9,28 +9,28 @@
                 <!-- Locate the email field to insert fields below it -->
                 <field name="email" position="after">
                     <div class="o_form_label">
-                        <label for="birth_date"/>
+                        <label for="birth_date">Birth Date</label>
                     </div>
                     <div class="o_form_field">
                         <field name="birth_date"/>
                     </div>
 
                     <div class="o_form_label">
-                        <label for="document_type"/>
+                        <label for="document_type">Document Type</label>
                     </div>
                     <div class="o_form_field">
                         <field name="document_type"/>
                     </div>
 
                     <div class="o_form_label">
-                        <label for="document_number"/>
+                        <label for="document_number">Document Number</label>
                     </div>
                     <div class="o_form_field">
                         <field name="document_number"/>
                     </div>
 
                     <div class="o_form_label">
-                        <label for="marital_status"/>
+                        <label for="marital_status">Marital Status</label>
                     </div>
                     <div class="o_form_field">
                         <field name="marital_status"/>
@@ -38,6 +38,7 @@
                 </field>
             </field>
         </record>
+
 
 
         <record id="view_partner_form_inherit_anamnesis" model="ir.ui.view">

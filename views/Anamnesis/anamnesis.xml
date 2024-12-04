@@ -4,7 +4,7 @@
         <record id="seq_projects_pallet" model="ir.sequence">
             <field name="name">Anamnesis Sequence</field>
             <field name="code">aqs.clinica.anamnesis</field>
-            <field name="prefix">ANAM/%(day)s/%(month)s/%(year)s/</field>
+            <field name="prefix">ANAM-%(day)s-%(month)s-%(year)s-</field>
             <field name="padding">3</field>
             <field name="number_next">1</field>
             <field name="number_increment">1</field>

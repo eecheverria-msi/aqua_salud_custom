@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
                 <!-- Use XPath to target the correct group and insert fields after it -->
-                <xpath expr="//[field[@name='email']]" position="after">
+                <xpath expr="[field[@name='email']]" position="after">
                     <group>
                         <group>
                             <field name="birth_date" string="Birth Date"/>

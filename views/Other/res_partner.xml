@@ -6,36 +6,19 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
-                <!-- Locate the email field to insert fields below it -->
-                <field name="email" position="after">
-                    <div class="o_form_label">
-                        <label for="birth_date">Birth Date</label>
-                    </div>
-                    <div class="o_form_field">
-                        <field name="birth_date"/>
-                    </div>
-
-                    <div class="o_form_label">
-                        <label for="document_type">Document Type</label>
-                    </div>
-                    <div class="o_form_field">
-                        <field name="document_type"/>
-                    </div>
-
-                    <div class="o_form_label">
-                        <label for="document_number">Document Number</label>
-                    </div>
-                    <div class="o_form_field">
-                        <field name="document_number"/>
-                    </div>
-
-                    <div class="o_form_label">
-                        <label for="marital_status">Marital Status</label>
-                    </div>
-                    <div class="o_form_field">
-                        <field name="marital_status"/>
-                    </div>
-                </field>
+                <!-- Use XPath to target the correct group and insert fields after it -->
+                <xpath expr="//group[field[@name='company_id']]" position="after">
+                    <group>
+                        <group>
+                            <field name="birth_date" string="Birth Date"/>
+                            <field name="document_type" string="Document Type"/>
+                        </group>
+                        <group>
+                            <field name="document_number" string="Document Number"/>
+                            <field name="marital_status" string="Marital Status"/>
+                        </group>
+                    </group>
+                </xpath>
             </field>
         </record>
 

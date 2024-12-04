@@ -20,7 +20,7 @@ class AqsClinicaAnamnesis(models.Model):
 
     name = fields.Char(string="Numero Anamnesis", required=True, default=lambda self: self.env['ir.sequence'].next_by_code('aqs.clinica.anamnesis'))
 
-    patient_id = fields.Many2one('res.partner', string="Patient", required=True, tracking=True)
+    patient_id = fields.Many2one('res.partner', string="Paciente", required=True, tracking=True)
     doctor_id = fields.Many2one('res.users', string="Doctor", required=True, tracking=True)
 
     historial_medico_personal = fields.Text(string="Historial Medico Personal")
@@ -33,7 +33,7 @@ class AqsClinicaAnamnesis(models.Model):
     plan_de_tratamiento = fields.Text(string="Plan de Tratamiento")
     ev_notas_prog = fields.Text(string="Evolucion y notas de progreso")
 
-    total_sales_orders = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Sales Orders Project")
+    total_sales_orders = fields.Integer(compute='_count_related_sales_orders', tracking=True, string="Total Ordenes de Compra")
 
     # TOTAL SALES ORDERS IN PROJECT COMPUTE METHOD
     @api.depends('patient_id')
@@ -44,7 +44,7 @@ class AqsClinicaAnamnesis(models.Model):
             else:
                 record.total_sales_orders = None
 
-    total_invoices = fields.Integer(compute='_count_related_invoices', tracking=True, string="Total Invoices")
+    total_invoices = fields.Integer(compute='_count_related_invoices', tracking=True, string="Total Facturas")
 
     @api.depends('patient_id')
     def _count_related_invoices(self):
@@ -57,7 +57,7 @@ class AqsClinicaAnamnesis(models.Model):
     def action_sales_orders(self):
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Sales Orders',
+            'name': 'Ordenes de Compra',
             'res_model': 'sale.order',
             'view_mode': 'tree,form',
             'domain': [('partner_id', '=', self.patient_id.id)],
@@ -66,7 +66,7 @@ class AqsClinicaAnamnesis(models.Model):
     def action_invoices(self):
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Invoices',
+            'name': 'Facturas',
             'res_model': 'account.move',
             'view_mode': 'tree,form',
             'domain': [('partner_id', '=', self.patient_id.id)],

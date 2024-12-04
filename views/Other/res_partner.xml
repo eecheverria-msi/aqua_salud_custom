@@ -8,17 +8,37 @@
             <field name="arch" type="xml">
                 <!-- Locate the email field to insert fields below it -->
                 <field name="email" position="after">
-                    <label for="birth_date"/>
-                    <field name="birth_date" />
-                    <label for="document_type"/>
-                    <field name="document_type" />
-                    <label for="document_number"/>
-                    <field name="document_number" />
-                    <label for="marital_status"/>
-                    <field name="marital_status" />
+                    <div class="o_form_label">
+                        <label for="birth_date"/>
+                    </div>
+                    <div class="o_form_field">
+                        <field name="birth_date"/>
+                    </div>
+
+                    <div class="o_form_label">
+                        <label for="document_type"/>
+                    </div>
+                    <div class="o_form_field">
+                        <field name="document_type"/>
+                    </div>
+
+                    <div class="o_form_label">
+                        <label for="document_number"/>
+                    </div>
+                    <div class="o_form_field">
+                        <field name="document_number"/>
+                    </div>
+
+                    <div class="o_form_label">
+                        <label for="marital_status"/>
+                    </div>
+                    <div class="o_form_field">
+                        <field name="marital_status"/>
+                    </div>
                 </field>
             </field>
         </record>
+
 
         <record id="view_partner_form_inherit_anamnesis" model="ir.ui.view">
             <field name="name">view.partner.form.inherit.anamnesis</field>

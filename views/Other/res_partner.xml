@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="view_partner_form_inherit" model="ir.ui.view">
-            <field name="name">res.partner.form.inherit</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form" />
-            <field name="arch" type="xml">
-                <!-- Use XPath to target the correct group and insert fields after it -->
-                <xpath expr="//field[@name='email']" position="after">
-                    <group>
-                        <group>
-                            <field name="birth_date" string="Birth Date"/>
-                            <field name="document_type" string="Document Type"/>
-                        </group>
-                        <group>
-                            <field name="document_number" string="Document Number"/>
-                            <field name="marital_status" string="Marital Status"/>
-                        </group>
-                    </group>
-                </xpath>
-            </field>
-        </record>
-
 
 
         <record id="view_partner_form_inherit_anamnesis" model="ir.ui.view">
@@ -30,6 +9,16 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">
+                    <page string="Patient Details">
+                        <group>
+                            <group>
+                                <field name="birth_date" string="Birth Date"/>
+                                <field name="document_type" string="Document Type"/>
+                                <field name="document_number" string="Document Number"/>
+                                <field name="marital_status" string="Marital Status"/>
+                            </group>
+                        </group>
+                    </page>
                     <page string="Anamnesis">
                         <field name="related_anamnesis"/>
                     </page>

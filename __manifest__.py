@@ -12,7 +12,7 @@
     'author': "Integer.ie",
     'website': "https://integer.ie",
     'category': 'Productivity',
-    'version': '18.0.1.0',
+    'version': '17.0.1.0',
     'images': [
         'static/description/icon.png',
     ],
